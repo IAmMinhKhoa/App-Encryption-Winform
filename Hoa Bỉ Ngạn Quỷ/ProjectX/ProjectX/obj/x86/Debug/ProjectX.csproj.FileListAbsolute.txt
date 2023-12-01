@@ -1,0 +1,87 @@
+C:\Documents and Settings\Administrator\my documents\visual studio 2010\Projects\ProjectX\ProjectX\bin\Debug\ProjectX.exe
+C:\Documents and Settings\Administrator\my documents\visual studio 2010\Projects\ProjectX\ProjectX\bin\Debug\ProjectX.pdb
+C:\Documents and Settings\Administrator\my documents\visual studio 2010\Projects\ProjectX\ProjectX\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\Administrator\my documents\visual studio 2010\Projects\ProjectX\ProjectX\obj\x86\Debug\ProjectX.Form1.resources
+C:\Documents and Settings\Administrator\my documents\visual studio 2010\Projects\ProjectX\ProjectX\obj\x86\Debug\ProjectX.Properties.Resources.resources
+C:\Documents and Settings\Administrator\my documents\visual studio 2010\Projects\ProjectX\ProjectX\obj\x86\Debug\GenerateResource-ResGen.read.1.tlog
+C:\Documents and Settings\Administrator\my documents\visual studio 2010\Projects\ProjectX\ProjectX\obj\x86\Debug\GenerateResource-ResGen.read.6.tlog
+C:\Documents and Settings\Administrator\my documents\visual studio 2010\Projects\ProjectX\ProjectX\obj\x86\Debug\GenerateResource-ResGen.write.1.tlog
+C:\Documents and Settings\Administrator\my documents\visual studio 2010\Projects\ProjectX\ProjectX\obj\x86\Debug\ProjectX.exe
+C:\Documents and Settings\Administrator\my documents\visual studio 2010\Projects\ProjectX\ProjectX\obj\x86\Debug\ProjectX.pdb
+C:\Documents and Settings\Administrator\My Documents\Visual Studio 2010\Projects\ProjectX\ProjectX\obj\x86\Debug\ProjectX.Form2.resources
+C:\Documents and Settings\Administrator\my documents\visual studio 2010\Projects\ProjectX\ProjectX\obj\x86\Debug\ProjectX.frmAbout.resources
+D:\Thư mục mới\Chinhsua\ProjectX\ProjectX\bin\Debug\ProjectX.exe
+D:\Thư mục mới\Chinhsua\ProjectX\ProjectX\bin\Debug\ProjectX.pdb
+D:\Thư mục mới\Chinhsua\ProjectX\ProjectX\bin\Debug\mscorlib.dll
+D:\Thư mục mới\Chinhsua\ProjectX\ProjectX\bin\Debug\sortkey.nlp
+D:\Thư mục mới\Chinhsua\ProjectX\ProjectX\bin\Debug\sorttbls.nlp
+D:\Thư mục mới\Chinhsua\ProjectX\ProjectX\bin\Debug\big5.nlp
+D:\Thư mục mới\Chinhsua\ProjectX\ProjectX\bin\Debug\bopomofo.nlp
+D:\Thư mục mới\Chinhsua\ProjectX\ProjectX\bin\Debug\ksc.nlp
+D:\Thư mục mới\Chinhsua\ProjectX\ProjectX\bin\Debug\prc.nlp
+D:\Thư mục mới\Chinhsua\ProjectX\ProjectX\bin\Debug\prcp.nlp
+D:\Thư mục mới\Chinhsua\ProjectX\ProjectX\bin\Debug\xjis.nlp
+D:\Thư mục mới\Chinhsua\ProjectX\ProjectX\bin\Debug\normidna.nlp
+D:\Thư mục mới\Chinhsua\ProjectX\ProjectX\bin\Debug\normnfc.nlp
+D:\Thư mục mới\Chinhsua\ProjectX\ProjectX\bin\Debug\normnfd.nlp
+D:\Thư mục mới\Chinhsua\ProjectX\ProjectX\bin\Debug\normnfkc.nlp
+D:\Thư mục mới\Chinhsua\ProjectX\ProjectX\bin\Debug\normnfkd.nlp
+D:\Thư mục mới\Chinhsua\ProjectX\ProjectX\obj\x86\Debug\ProjectX.csproj.AssemblyReference.cache
+D:\Thư mục mới\Chinhsua\ProjectX\ProjectX\obj\x86\Debug\ProjectX.Form1.resources
+D:\Thư mục mới\Chinhsua\ProjectX\ProjectX\obj\x86\Debug\ProjectX.Form2.resources
+D:\Thư mục mới\Chinhsua\ProjectX\ProjectX\obj\x86\Debug\ProjectX.Properties.Resources.resources
+D:\Thư mục mới\Chinhsua\ProjectX\ProjectX\obj\x86\Debug\ProjectX.csproj.GenerateResource.cache
+D:\Thư mục mới\Chinhsua\ProjectX\ProjectX\obj\x86\Debug\ProjectX.csproj.CoreCompileInputs.cache
+D:\Thư mục mới\Chinhsua\ProjectX\ProjectX\obj\x86\Debug\ProjectX.csproj.CopyComplete
+D:\Thư mục mới\Chinhsua\ProjectX\ProjectX\obj\x86\Debug\ProjectX.exe
+D:\Thư mục mới\Chinhsua\ProjectX\ProjectX\obj\x86\Debug\ProjectX.pdb
+D:\Hoa Bỉ Ngạn Quỷ\ProjectX\ProjectX\obj\x86\Debug\ProjectX.csproj.AssemblyReference.cache
+D:\Hoa Bỉ Ngạn Quỷ\ProjectX\ProjectX\obj\x86\Debug\ProjectX.Form1.resources
+D:\Hoa Bỉ Ngạn Quỷ\ProjectX\ProjectX\obj\x86\Debug\ProjectX.Form2.resources
+D:\Hoa Bỉ Ngạn Quỷ\ProjectX\ProjectX\obj\x86\Debug\ProjectX.Properties.Resources.resources
+D:\Hoa Bỉ Ngạn Quỷ\ProjectX\ProjectX\obj\x86\Debug\ProjectX.csproj.GenerateResource.cache
+D:\Hoa Bỉ Ngạn Quỷ\ProjectX\ProjectX\obj\x86\Debug\ProjectX.csproj.CoreCompileInputs.cache
+D:\Hoa Bỉ Ngạn Quỷ\ProjectX\ProjectX\obj\x86\Debug\ProjectX.exe
+D:\Hoa Bỉ Ngạn Quỷ\ProjectX\ProjectX\obj\x86\Debug\ProjectX.pdb
+D:\Hoa Bỉ Ngạn Quỷ\ProjectX\ProjectX\bin\Debug\ProjectX.exe
+D:\Hoa Bỉ Ngạn Quỷ\ProjectX\ProjectX\bin\Debug\ProjectX.pdb
+D:\Hoa Bỉ Ngạn Quỷ\ProjectX\ProjectX\bin\Debug\mscorlib.dll
+D:\Hoa Bỉ Ngạn Quỷ\ProjectX\ProjectX\bin\Debug\sortkey.nlp
+D:\Hoa Bỉ Ngạn Quỷ\ProjectX\ProjectX\bin\Debug\sorttbls.nlp
+D:\Hoa Bỉ Ngạn Quỷ\ProjectX\ProjectX\bin\Debug\big5.nlp
+D:\Hoa Bỉ Ngạn Quỷ\ProjectX\ProjectX\bin\Debug\bopomofo.nlp
+D:\Hoa Bỉ Ngạn Quỷ\ProjectX\ProjectX\bin\Debug\ksc.nlp
+D:\Hoa Bỉ Ngạn Quỷ\ProjectX\ProjectX\bin\Debug\prc.nlp
+D:\Hoa Bỉ Ngạn Quỷ\ProjectX\ProjectX\bin\Debug\prcp.nlp
+D:\Hoa Bỉ Ngạn Quỷ\ProjectX\ProjectX\bin\Debug\xjis.nlp
+D:\Hoa Bỉ Ngạn Quỷ\ProjectX\ProjectX\bin\Debug\normidna.nlp
+D:\Hoa Bỉ Ngạn Quỷ\ProjectX\ProjectX\bin\Debug\normnfc.nlp
+D:\Hoa Bỉ Ngạn Quỷ\ProjectX\ProjectX\bin\Debug\normnfd.nlp
+D:\Hoa Bỉ Ngạn Quỷ\ProjectX\ProjectX\bin\Debug\normnfkc.nlp
+D:\Hoa Bỉ Ngạn Quỷ\ProjectX\ProjectX\bin\Debug\normnfkd.nlp
+D:\Hoa Bỉ Ngạn Quỷ\ProjectX\ProjectX\obj\x86\Debug\ProjectX.csproj.CopyComplete
+C:\Users\LENOVO\Downloads\Hoa Bỉ Ngạn Quỷ\ProjectX\ProjectX\bin\Debug\ProjectX.exe
+C:\Users\LENOVO\Downloads\Hoa Bỉ Ngạn Quỷ\ProjectX\ProjectX\bin\Debug\ProjectX.pdb
+C:\Users\LENOVO\Downloads\Hoa Bỉ Ngạn Quỷ\ProjectX\ProjectX\bin\Debug\mscorlib.dll
+C:\Users\LENOVO\Downloads\Hoa Bỉ Ngạn Quỷ\ProjectX\ProjectX\bin\Debug\sortkey.nlp
+C:\Users\LENOVO\Downloads\Hoa Bỉ Ngạn Quỷ\ProjectX\ProjectX\bin\Debug\sorttbls.nlp
+C:\Users\LENOVO\Downloads\Hoa Bỉ Ngạn Quỷ\ProjectX\ProjectX\bin\Debug\big5.nlp
+C:\Users\LENOVO\Downloads\Hoa Bỉ Ngạn Quỷ\ProjectX\ProjectX\bin\Debug\bopomofo.nlp
+C:\Users\LENOVO\Downloads\Hoa Bỉ Ngạn Quỷ\ProjectX\ProjectX\bin\Debug\ksc.nlp
+C:\Users\LENOVO\Downloads\Hoa Bỉ Ngạn Quỷ\ProjectX\ProjectX\bin\Debug\prc.nlp
+C:\Users\LENOVO\Downloads\Hoa Bỉ Ngạn Quỷ\ProjectX\ProjectX\bin\Debug\prcp.nlp
+C:\Users\LENOVO\Downloads\Hoa Bỉ Ngạn Quỷ\ProjectX\ProjectX\bin\Debug\xjis.nlp
+C:\Users\LENOVO\Downloads\Hoa Bỉ Ngạn Quỷ\ProjectX\ProjectX\bin\Debug\normidna.nlp
+C:\Users\LENOVO\Downloads\Hoa Bỉ Ngạn Quỷ\ProjectX\ProjectX\bin\Debug\normnfc.nlp
+C:\Users\LENOVO\Downloads\Hoa Bỉ Ngạn Quỷ\ProjectX\ProjectX\bin\Debug\normnfd.nlp
+C:\Users\LENOVO\Downloads\Hoa Bỉ Ngạn Quỷ\ProjectX\ProjectX\bin\Debug\normnfkc.nlp
+C:\Users\LENOVO\Downloads\Hoa Bỉ Ngạn Quỷ\ProjectX\ProjectX\bin\Debug\normnfkd.nlp
+C:\Users\LENOVO\Downloads\Hoa Bỉ Ngạn Quỷ\ProjectX\ProjectX\obj\x86\Debug\ProjectX.csproj.AssemblyReference.cache
+C:\Users\LENOVO\Downloads\Hoa Bỉ Ngạn Quỷ\ProjectX\ProjectX\obj\x86\Debug\ProjectX.Form1.resources
+C:\Users\LENOVO\Downloads\Hoa Bỉ Ngạn Quỷ\ProjectX\ProjectX\obj\x86\Debug\ProjectX.Form2.resources
+C:\Users\LENOVO\Downloads\Hoa Bỉ Ngạn Quỷ\ProjectX\ProjectX\obj\x86\Debug\ProjectX.Properties.Resources.resources
+C:\Users\LENOVO\Downloads\Hoa Bỉ Ngạn Quỷ\ProjectX\ProjectX\obj\x86\Debug\ProjectX.csproj.GenerateResource.cache
+C:\Users\LENOVO\Downloads\Hoa Bỉ Ngạn Quỷ\ProjectX\ProjectX\obj\x86\Debug\ProjectX.csproj.CoreCompileInputs.cache
+C:\Users\LENOVO\Downloads\Hoa Bỉ Ngạn Quỷ\ProjectX\ProjectX\obj\x86\Debug\ProjectX.csproj.CopyComplete
+C:\Users\LENOVO\Downloads\Hoa Bỉ Ngạn Quỷ\ProjectX\ProjectX\obj\x86\Debug\ProjectX.exe
+C:\Users\LENOVO\Downloads\Hoa Bỉ Ngạn Quỷ\ProjectX\ProjectX\obj\x86\Debug\ProjectX.pdb
