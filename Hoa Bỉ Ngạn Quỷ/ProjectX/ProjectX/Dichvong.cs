@@ -26,17 +26,31 @@ namespace ProjectX
                 {
                     temp[j] = ' '; // Giữ nguyên khoảng trắng trong đầu ra
                 }
+                else if (!IsLetter(banro[j]))
+                {
+                    temp[j] = banro[j];
+                }
                 else
                 {
                     char banroChar = banro[j];
                     char banmaChar;
                     if (char.IsUpper(banroChar))
                     {
-                        banmaChar = P[(Array.IndexOf(P, char.ToUpper(banroChar)) + k) % 26];
+                        int index = (Array.IndexOf(P, char.ToUpper(banroChar)) + k) % 26;
+                        if (index < 0)
+                        {
+                            index += 26; // Đảm bảo giá trị index không âm
+                        }
+                        banmaChar = P[index];
                     }
                     else if (char.IsLower(banroChar))
                     {
-                        banmaChar = P[(Array.IndexOf(P, char.ToLower(banroChar)) + k) % 26 + 26];
+                        int index = (Array.IndexOf(P, char.ToLower(banroChar)) + k) % 26 + 26;
+                        if (index < 26)
+                        {
+                            index += 26; // Đảm bảo giá trị index không âm
+                        }
+                        banmaChar = P[index];
                     }
                     else
                     {
@@ -67,17 +81,31 @@ namespace ProjectX
                 {
                     temp[j] = ' '; // Giữ nguyên khoảng trắng trong đầu ra
                 }
+                else if (!IsLetter(banma[j]))
+                {
+                    temp[j] = banma[j];
+                }
                 else
                 {
                     char banmaChar = banma[j];
                     char banroChar;
                     if (char.IsUpper(banmaChar))
                     {
-                        banroChar = P[(Array.IndexOf(P, char.ToUpper(banmaChar)) + P.Length - k) % 26];
+                        int index = (Array.IndexOf(P, char.ToUpper(banmaChar)) + P.Length - k) % 26;
+                        if (index < 0)
+                        {
+                            index += 26; // Đảm bảo giá trị index không âm
+                        }
+                        banroChar = P[index];
                     }
                     else if (char.IsLower(banmaChar))
                     {
-                        banroChar = P[(Array.IndexOf(P, char.ToLower(banmaChar)) + P.Length - k) % 26 + 26];
+                        int index = (Array.IndexOf(P, char.ToLower(banmaChar)) + P.Length - k) % 26 + 26;
+                        if (index < 26)
+                        {
+                            index += 26; // Đảm bảo giá trị index không âm
+                        }
+                        banroChar = P[index];
                     }
                     else
                     {
@@ -91,6 +119,11 @@ namespace ProjectX
 
             string result = new string(temp);
             return result;
+        }
+
+        public static bool IsLetter(char c)
+        {
+            return (c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z');
         }
     }
 }

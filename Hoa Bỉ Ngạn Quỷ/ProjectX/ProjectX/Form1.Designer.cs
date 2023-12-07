@@ -225,6 +225,10 @@
             this.button1 = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.label55 = new System.Windows.Forms.Label();
+            this.textBox15 = new System.Windows.Forms.TextBox();
+            this.label56 = new System.Windows.Forms.Label();
+            this.textBox16 = new System.Windows.Forms.TextBox();
             this.tabPage7.SuspendLayout();
             this.groupBox15.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
@@ -1887,6 +1891,7 @@
             this.textBox8.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.textBox8.Multiline = true;
             this.textBox8.Name = "textBox8";
+            this.textBox8.ReadOnly = true;
             this.textBox8.Size = new System.Drawing.Size(417, 193);
             this.textBox8.TabIndex = 12;
             // 
@@ -1896,6 +1901,7 @@
             this.textBox7.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.textBox7.Multiline = true;
             this.textBox7.Name = "textBox7";
+            this.textBox7.ReadOnly = true;
             this.textBox7.Size = new System.Drawing.Size(426, 193);
             this.textBox7.TabIndex = 11;
             this.textBox7.TextChanged += new System.EventHandler(this.textBox7_TextChanged);
@@ -2173,6 +2179,10 @@
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
+            this.groupBox1.Controls.Add(this.textBox16);
+            this.groupBox1.Controls.Add(this.label56);
+            this.groupBox1.Controls.Add(this.textBox15);
+            this.groupBox1.Controls.Add(this.label55);
             this.groupBox1.Controls.Add(this.pictureBox8);
             this.groupBox1.Controls.Add(this.pictureBox1);
             this.groupBox1.Controls.Add(this.label37);
@@ -2256,6 +2266,7 @@
             this.textBox6.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.textBox6.Multiline = true;
             this.textBox6.Name = "textBox6";
+            this.textBox6.ReadOnly = true;
             this.textBox6.Size = new System.Drawing.Size(426, 199);
             this.textBox6.TabIndex = 1;
             // 
@@ -2294,7 +2305,8 @@
             this.textBox5.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.textBox5.Multiline = true;
             this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(416, 199);
+            this.textBox5.ReadOnly = true;
+            this.textBox5.Size = new System.Drawing.Size(446, 199);
             this.textBox5.TabIndex = 0;
             // 
             // button4
@@ -2353,19 +2365,19 @@
             // textBox2
             // 
             this.textBox2.ForeColor = System.Drawing.Color.Purple;
-            this.textBox2.Location = new System.Drawing.Point(1015, 322);
+            this.textBox2.Location = new System.Drawing.Point(986, 327);
             this.textBox2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(272, 46);
+            this.textBox2.Size = new System.Drawing.Size(179, 46);
             this.textBox2.TabIndex = 2;
             // 
             // textBox3
             // 
             this.textBox3.ForeColor = System.Drawing.Color.Purple;
-            this.textBox3.Location = new System.Drawing.Point(261, 334);
+            this.textBox3.Location = new System.Drawing.Point(236, 334);
             this.textBox3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(249, 46);
+            this.textBox3.Size = new System.Drawing.Size(172, 46);
             this.textBox3.TabIndex = 2;
             // 
             // button6
@@ -2423,7 +2435,7 @@
             this.textBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(416, 182);
+            this.textBox1.Size = new System.Drawing.Size(446, 182);
             this.textBox1.TabIndex = 0;
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
@@ -2444,6 +2456,42 @@
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(1534, 829);
             this.tabControl1.TabIndex = 1;
+            // 
+            // label55
+            // 
+            this.label55.AutoSize = true;
+            this.label55.Location = new System.Drawing.Point(409, 338);
+            this.label55.Name = "label55";
+            this.label55.Size = new System.Drawing.Size(31, 39);
+            this.label55.TabIndex = 14;
+            this.label55.Text = "=";
+            // 
+            // textBox15
+            // 
+            this.textBox15.Location = new System.Drawing.Point(442, 334);
+            this.textBox15.Name = "textBox15";
+            this.textBox15.ReadOnly = true;
+            this.textBox15.Size = new System.Drawing.Size(98, 46);
+            this.textBox15.TabIndex = 15;
+            this.textBox15.TextChanged += new System.EventHandler(this.textBox15_TextChanged);
+            // 
+            // label56
+            // 
+            this.label56.AutoSize = true;
+            this.label56.Location = new System.Drawing.Point(1163, 330);
+            this.label56.Name = "label56";
+            this.label56.Size = new System.Drawing.Size(31, 39);
+            this.label56.TabIndex = 16;
+            this.label56.Text = "=";
+            // 
+            // textBox16
+            // 
+            this.textBox16.Location = new System.Drawing.Point(1187, 327);
+            this.textBox16.Name = "textBox16";
+            this.textBox16.ReadOnly = true;
+            this.textBox16.Size = new System.Drawing.Size(100, 46);
+            this.textBox16.TabIndex = 17;
+            this.textBox16.TextChanged += new System.EventHandler(this.textBox16_TextChanged);
             // 
             // Form1
             // 
@@ -2702,5 +2750,9 @@
         private System.Windows.Forms.PictureBox pictureBox9;
         private System.Windows.Forms.TextBox txtSHA1;
         private System.Windows.Forms.TextBox txtSHA2;
+        private System.Windows.Forms.TextBox textBox15;
+        private System.Windows.Forms.Label label55;
+        private System.Windows.Forms.TextBox textBox16;
+        private System.Windows.Forms.Label label56;
     }
 }

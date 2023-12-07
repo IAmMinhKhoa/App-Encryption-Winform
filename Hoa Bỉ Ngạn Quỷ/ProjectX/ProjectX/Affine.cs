@@ -7,12 +7,11 @@ namespace ProjectX
 {
     class Affine
     {
-        
-        public static string nguon = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";                
+
+        public static string nguon = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         public static char[] P = nguon.ToCharArray();
 
-        
-        public static int USCLN(int a, int b) //Tinh uoc so chung lon nhat
+        public static int USCLN(int a, int b) //Tính ước số chung lớn nhất
         {
             a = Math.Abs(a);
             b = Math.Abs(b);
@@ -28,112 +27,149 @@ namespace ProjectX
             return a;
         }
 
+        public static int A1modm(int a, int m) //Tính a^-1 mod m
+        {
+            int m0 = m;
+            int y = 0, x = 1;
 
+            if (m == 1)
+                return 0;
 
-        public static int A1modm(int a, int m)//tinh a^-1modX
-         {
-             int y = 0,y0=0,y1=1,result=0;
-             while (a > 0)
-             {
-                 int r = m % a;
-                     if(r==0)
-                         break;
-                    int q = m/a ;
-                    y = y0-(y1*q) ;
-                    m = a;
-                    a= r;
-                    y0= y1;
-                    y1 = y;
-             }
-             if (a == 1) result = ((y + P.Length) % P.Length);
-             return result;                               
-          }
+            while (a > 1)
+            {
+                int q = a / m;
+                int t = m;
 
+                m = a % m;
+                a = t;
+                t = y;
 
-        public static string Mahoa(string s, int a, int b) //Thuật toán mã hóa Affine
-         {
-             char[] banro = s.ToCharArray();
-             int maso=0;
-             int l = banro.Length;
-             char[] temp = new char[l];
-             int[] roso = new int[l];            
-             for (int j = 0; j < l;j++ )
-             {
-                 for (int i = 0; i < P.Length; i++)
-                 {
-                     if (P[i] == banro[j])
-                     {
-                         roso[j] = i;
-                         maso = (roso[j] * a + b) % P.Length;
-                         temp[j] = P[maso];
-                        
-                     }
-                 }
-             }
-             string banma = new string(temp);
-             return banma;
+                y = x - q * y;
+                x = t;
+            }
 
-         }
+            if (x < 0)
+                x += m0;
 
+            return x;
+        }
 
-        public static string Giaima(string s, int a, int b) //Thuật toán giải mã Affine
-         {
-             char[] banma = s.ToCharArray();
-             int maso=0;         
-             int l = banma.Length;
-             char[] temp = new char[l];
-             int[] roso = new int[l];
-             int k = Affine.A1modm(a, P.Length);
-             for(int j = 0;j<l ; j++)             
-             {
-                 for (int i = 0; i< P.Length; i++)
-                 {
-                     if (P[i]==banma[j])
-                     {
-                         roso[j] = i;
-                         maso = ((k+P.Length)*(roso[j]-b+P.Length)) % P.Length;
-                         temp[j] = P[maso];                   
-                     }
-                 }
-             }
-             string banro = new string(temp);
-             return banro ;
-         }
-        public static string test (int n)
-         {
-             int t = Affine.A1modm(n, P.Length);
-             string s = t.ToString();
-             return s;
-         }
-     /*    public static int test2()
-         {
-             int g = P.Length;
-             return g;
-         }
-         public static char[] Sources ()
-         {
-             return P;
-         }
-        public static string test3(string s)
+        public static string Mahoa(string s, int a, int b)
         {
             char[] banro = s.ToCharArray();
             int maso = 0;
-            
-            char[] temp = new char[banro.Length];
-            for (int j = 0; j < banro.Length; j++)
+            int l = banro.Length;
+            char[] temp = new char[l];
+            int[] roso = new int[l];
+            for (int j = 0; j < l; j++)
             {
+                if (char.IsWhiteSpace(banro[j]))
+                {
+                    temp[j] = ' ';
+                    continue;
+                } else if (!IsLetter(banro[j]))
+                {
+                    temp[j] = banro[j];
+                    continue;
+                }    
+
+                bool isUpperCase = Char.IsUpper(banro[j]);
+
                 for (int i = 0; i < P.Length; i++)
                 {
-                    if (P[i] == banro[j])
-                    {
+                    if (isUpperCase && Char.IsLower(P[i]))
+                        continue;
 
-                        maso = i;
+                    if (!isUpperCase && Char.IsUpper(P[i]))
+                        continue;
+
+                    if (Char.ToUpper(P[i]) == Char.ToUpper(banro[j]))
+                    {
+                        roso[j] = i;
+                        maso = ((roso[j] * a) + b) % P.Length;
+                        temp[j] = P[maso];
                     }
                 }
             }
+            string banma = new string(temp);
+            return banma;
+        }
 
-            string ss = maso.ToString();
-            return ss;
-        }*/
+        public static string Giaima(string s, int a, int b)
+        {
+            char[] banma = s.ToCharArray();
+            int maso = 0;
+            int l = banma.Length;
+            char[] temp = new char[l];
+            int[] roso = new int[l];
+            int k = Affine.A1modm(a, P.Length);
+            for (int j = 0; j < l; j++)
+            {
+                if (char.IsWhiteSpace(banma[j]))
+                {
+                    temp[j] = ' ';
+                    continue;
+                }
+                else if (!IsLetter(banma[j]))
+                {
+                    temp[j] = banma[j];
+                    continue;
+                }
+
+                bool isUpperCase = Char.IsUpper(banma[j]);
+
+                for (int i = 0; i < P.Length; i++)
+                {
+                    if (isUpperCase && Char.IsLower(P[i]))
+                        continue;
+
+                    if (!isUpperCase && Char.IsUpper(P[i]))
+                        continue;
+
+                    if (Char.ToUpper(P[i]) == Char.ToUpper(banma[j]))
+                    {
+                        roso[j] = i;
+                        maso = ((k + P.Length) * (roso[j] - b + P.Length)) % P.Length;
+                        temp[j] = P[maso];
+                    }
+                }
+            }
+            string banro = new string(temp);
+            return banro;
+        }
+        public static bool IsLetter(char c)
+        {
+            return (c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z');
+        }
+        /*    public static int test2()
+            {
+                int g = P.Length;
+                return g;
+            }
+            public static char[] Sources ()
+            {
+                return P;
+            }
+           public static string test3(string s)
+           {
+               char[] banro = s.ToCharArray();
+               int maso = 0;
+
+               char[] temp = new char[banro.Length];
+               for (int j = 0; j < banro.Length; j++)
+               {
+                   for (int i = 0; i < P.Length; i++)
+                   {
+                       if (P[i] == banro[j])
+                       {
+
+                           maso = i;
+                       }
+                   }
+               }
+
+               string ss = maso.ToString();
+               return ss;
+           }*/
     }
 }
