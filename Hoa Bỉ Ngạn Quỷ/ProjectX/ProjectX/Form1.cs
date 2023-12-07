@@ -9,6 +9,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Security.Cryptography;
 using System.Threading;
+using System.Text.RegularExpressions;
 
 namespace ProjectX
 {
@@ -62,33 +63,102 @@ namespace ProjectX
             mahoadichvong();
         }
 
-        private void mahoadichvong() 
+        private void mahoadichvong()
         {
-          if (textBox1.Text == ""  )
-                MessageBox.Show("Vui lòng nhập chữ Hoa  ", "Thông Báo ", MessageBoxButtons.OK, MessageBoxIcon.Error);
-          else {
-                try
+            int key = 0;
+            if (textBox1.Text == "")   //chưa nhập bản rõ
+            {
+                MessageBox.Show("Vui lòng nhập bản rõ!", "Thông Báo ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            else if (DoesNotContainNumber(textBox1.Text) || ContainsNonAlphanumericCharacters(textBox1.Text)) //bản rõ không được chứa kí tự đặc biệt và số
+            {
+                MessageBox.Show("Bản rõ chỉ được chứa kí tự là chữ!", "Thông Báo ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                textBox1.Text = "";
+                return;
+            }
+
+            if (textBox3.Text == "") //chưa nhập khoá k
+            {
+                MessageBox.Show("Vui lòng nhập khoá để mã hoá!", "Thông Báo ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            else if (ContainsNonAlphanumericCharacters(textBox3.Text)) //Khoá k chỉ được chứa kí tự là chữ hoặc số
+            {
+                MessageBox.Show("Khoá K chỉ được chứa kí tự là chữ hoặc số!", "Thông Báo ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (IsNumber(textBox3.Text))  //khoá là số
+            {
+                key = Convert.ToInt32(textBox3.Text);
+            }
+            else if (hasNumber(textBox3.Text))  //khoá là chuỗi vừa chứa chữ và số
+            {
+                key = CalculateStringSum(textBox3.Text);
+            }
+            else  //khoá là chuỗi
+            {
+                key = textBox3.Text.Length;
+            }
+
+            textBox5.Text = Dichvong.Mahoa(textBox1.Text, key);
+        }
+
+        static bool ContainsNonAlphanumericCharacters(string input)
+        {
+            // Kiểm tra xem chuỗi có chứa kí tự không phải chữ cái, số hoặc khoảng trắng hay không
+            return Regex.IsMatch(input.Trim(), @"[^a-zA-Z0-9\s]+");
+        }
+
+        static bool DoesNotContainNumber(string input)
+        {
+            return input.Any(c => char.IsDigit(c));
+        }
+
+        static bool IsNumber(string input)
+        {
+            int number;
+            bool isNumeric = int.TryParse(input, out number);
+            return isNumeric;
+        }
+
+        static bool hasNumber(string input)
+        {
+            foreach (char c in input)
+            {
+                if (char.IsDigit(c))
                 {
-                    int key = Convert.ToInt32(textBox3.Text);
-                    textBox5.Text = Dichvong.Mahoa(textBox1.Text, key);
-
-
-                    if (key >= 214 || key < 0)
-                    {
-                        MessageBox.Show("Giá trị khóa không được vượt quá không gian Z(214)", "Error =.=!");
-                        textBox1.Text = "";
-                        textBox3.Text = "";
-                    }
-                }
-
-                catch (Exception)
-                {
-                    MessageBox.Show("Nhập lại khóa(Nhập số nguyên)!", "Error =.=! ");
-                    textBox1.Text = "";
-                    textBox3.Text = "";
+                    return true;
                 }
             }
+            return false;
         }
+
+        static int CalculateStringSum(string input)
+        {
+            int sum = 0;
+            foreach (char c in input)
+            {
+                if (char.IsLetter(c))
+                {
+                    int letterValue = char.ToUpper(c) - 'A' + 1;
+                    sum += letterValue;
+                }
+                else if (char.IsDigit(c))
+                {
+                    int digitValue = int.Parse(c.ToString());
+                    sum += digitValue;
+                }
+            }
+            if(sum > 26)
+            {
+                sum = sum % 26;
+            }
+            return sum;
+        }
+
+
 
         private void button4_Click(object sender, EventArgs e)//Button giải mã dịch vòng
         {
@@ -96,24 +166,43 @@ namespace ProjectX
         }
         private void giaimadichvong()
         {
-            try
+            int key = 0;
+            if (textBox4.Text == "")   //chưa nhập bản rõ
             {
-                int key = Convert.ToInt32(textBox2.Text);
-                if (key >= 214 || key < 0)
-                {
-                    MessageBox.Show("Giá trị khóa không được vượt quá không gian Z(214)", "Error =.=!");
-                    textBox4.Text = "";
-                    textBox2.Text = "";
-                }
-                textBox6.Text = Dichvong.Giaima(textBox4.Text, key);
+                MessageBox.Show("Vui lòng nhập bản mã!", "Thông Báo ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            else if (DoesNotContainNumber(textBox4.Text) || ContainsNonAlphanumericCharacters(textBox4.Text)) //bản rõ không được chứa kí tự đặc biệt và số
+            {
+                MessageBox.Show("Bản mã chỉ được chứa kí tự là chữ!", "Thông Báo ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                textBox4.Text = "";
+                return;
             }
 
-            catch (Exception)
+            if (textBox2.Text == "") //chưa nhập khoá k
             {
-                MessageBox.Show("Nhập lại khóa(Nhập số nguyên)!", "Error =.=! "); 
-                textBox4.Text = "";
-                textBox2.Text = "";
+                MessageBox.Show("Vui lòng nhập khoá để giải hoá!", "Thông Báo ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
+            else if (ContainsNonAlphanumericCharacters(textBox2.Text)) //Khoá k chỉ được chứa kí tự là chữ hoặc số
+            {
+                MessageBox.Show("Khoá K chỉ được chứa kí tự là chữ hoặc số!", "Thông Báo ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (IsNumber(textBox2.Text))  //khoá là số
+            {
+                key = Convert.ToInt32(textBox2.Text);
+            }
+            else if (hasNumber(textBox2.Text))  //khoá là chuỗi vừa chứa chữ và số
+            {
+                key = CalculateStringSum(textBox2.Text);
+            }
+            else  //khoá là chuỗi
+            {
+                key = textBox2.Text.Length;
+            }
+            textBox6.Text = Dichvong.Giaima(textBox4.Text, key);
         }
 
         private void button5_Click(object sender, EventArgs e)//Button chọn file bản mã
@@ -1594,6 +1683,37 @@ namespace ProjectX
             }
 
         }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Hill_txtKhoaAbanma_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Hill_txtKhoaBbanma_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Hill_txtKhoaCbanma_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox9_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void AutoCode_txtKhoaBanma_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
         private void txtXuatVanBan_TextChanged(object sender, EventArgs e)
         {
             if (txtXuatVanBan.Text == "")
