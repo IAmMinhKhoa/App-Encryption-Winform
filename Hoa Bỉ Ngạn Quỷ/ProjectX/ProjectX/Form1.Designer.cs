@@ -203,6 +203,10 @@
             this.Affine_txtBanro = new System.Windows.Forms.TextBox();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.textBox16 = new System.Windows.Forms.TextBox();
+            this.label56 = new System.Windows.Forms.Label();
+            this.textBox15 = new System.Windows.Forms.TextBox();
+            this.label55 = new System.Windows.Forms.Label();
             this.pictureBox8 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label37 = new System.Windows.Forms.Label();
@@ -225,10 +229,6 @@
             this.button1 = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.label55 = new System.Windows.Forms.Label();
-            this.textBox15 = new System.Windows.Forms.TextBox();
-            this.label56 = new System.Windows.Forms.Label();
-            this.textBox16 = new System.Windows.Forms.TextBox();
             this.tabPage7.SuspendLayout();
             this.groupBox15.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
@@ -1608,6 +1608,7 @@
             this.textBox14.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.textBox14.Multiline = true;
             this.textBox14.Name = "textBox14";
+            this.textBox14.ReadOnly = true;
             this.textBox14.Size = new System.Drawing.Size(394, 188);
             this.textBox14.TabIndex = 14;
             // 
@@ -1617,6 +1618,7 @@
             this.textBox13.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.textBox13.Multiline = true;
             this.textBox13.Name = "textBox13";
+            this.textBox13.ReadOnly = true;
             this.textBox13.Size = new System.Drawing.Size(420, 188);
             this.textBox13.TabIndex = 13;
             // 
@@ -2215,6 +2217,42 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Giải mã";
             // 
+            // textBox16
+            // 
+            this.textBox16.Location = new System.Drawing.Point(1187, 327);
+            this.textBox16.Name = "textBox16";
+            this.textBox16.ReadOnly = true;
+            this.textBox16.Size = new System.Drawing.Size(100, 46);
+            this.textBox16.TabIndex = 17;
+            this.textBox16.TextChanged += new System.EventHandler(this.textBox16_TextChanged);
+            // 
+            // label56
+            // 
+            this.label56.AutoSize = true;
+            this.label56.Location = new System.Drawing.Point(1163, 330);
+            this.label56.Name = "label56";
+            this.label56.Size = new System.Drawing.Size(31, 39);
+            this.label56.TabIndex = 16;
+            this.label56.Text = "=";
+            // 
+            // textBox15
+            // 
+            this.textBox15.Location = new System.Drawing.Point(442, 334);
+            this.textBox15.Name = "textBox15";
+            this.textBox15.ReadOnly = true;
+            this.textBox15.Size = new System.Drawing.Size(98, 46);
+            this.textBox15.TabIndex = 15;
+            this.textBox15.TextChanged += new System.EventHandler(this.textBox15_TextChanged);
+            // 
+            // label55
+            // 
+            this.label55.AutoSize = true;
+            this.label55.Location = new System.Drawing.Point(409, 338);
+            this.label55.Name = "label55";
+            this.label55.Size = new System.Drawing.Size(31, 39);
+            this.label55.TabIndex = 14;
+            this.label55.Text = "=";
+            // 
             // pictureBox8
             // 
             this.pictureBox8.Image = global::ProjectX.Properties.Resources.chuc_ngu_ngon_va_mo_ve_nhung_dieu_ngo_nghinh_dep_de_nhe;
@@ -2456,42 +2494,6 @@
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(1534, 829);
             this.tabControl1.TabIndex = 1;
-            // 
-            // label55
-            // 
-            this.label55.AutoSize = true;
-            this.label55.Location = new System.Drawing.Point(409, 338);
-            this.label55.Name = "label55";
-            this.label55.Size = new System.Drawing.Size(31, 39);
-            this.label55.TabIndex = 14;
-            this.label55.Text = "=";
-            // 
-            // textBox15
-            // 
-            this.textBox15.Location = new System.Drawing.Point(442, 334);
-            this.textBox15.Name = "textBox15";
-            this.textBox15.ReadOnly = true;
-            this.textBox15.Size = new System.Drawing.Size(98, 46);
-            this.textBox15.TabIndex = 15;
-            this.textBox15.TextChanged += new System.EventHandler(this.textBox15_TextChanged);
-            // 
-            // label56
-            // 
-            this.label56.AutoSize = true;
-            this.label56.Location = new System.Drawing.Point(1163, 330);
-            this.label56.Name = "label56";
-            this.label56.Size = new System.Drawing.Size(31, 39);
-            this.label56.TabIndex = 16;
-            this.label56.Text = "=";
-            // 
-            // textBox16
-            // 
-            this.textBox16.Location = new System.Drawing.Point(1187, 327);
-            this.textBox16.Name = "textBox16";
-            this.textBox16.ReadOnly = true;
-            this.textBox16.Size = new System.Drawing.Size(100, 46);
-            this.textBox16.TabIndex = 17;
-            this.textBox16.TextChanged += new System.EventHandler(this.textBox16_TextChanged);
             // 
             // Form1
             // 

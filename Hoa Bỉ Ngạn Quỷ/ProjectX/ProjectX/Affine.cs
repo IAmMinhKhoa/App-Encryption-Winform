@@ -73,20 +73,12 @@ namespace ProjectX
                     continue;
                 }    
 
-                bool isUpperCase = Char.IsUpper(banro[j]);
-
                 for (int i = 0; i < P.Length; i++)
                 {
-                    if (isUpperCase && Char.IsLower(P[i]))
-                        continue;
-
-                    if (!isUpperCase && Char.IsUpper(P[i]))
-                        continue;
-
-                    if (Char.ToUpper(P[i]) == Char.ToUpper(banro[j]))
+                    if (P[i] == banro[j])
                     {
                         roso[j] = i;
-                        maso = ((roso[j] * a) + b) % P.Length;
+                        maso = (roso[j] * a + b) % P.Length;
                         temp[j] = P[maso];
                     }
                 }
@@ -116,17 +108,9 @@ namespace ProjectX
                     continue;
                 }
 
-                bool isUpperCase = Char.IsUpper(banma[j]);
-
                 for (int i = 0; i < P.Length; i++)
                 {
-                    if (isUpperCase && Char.IsLower(P[i]))
-                        continue;
-
-                    if (!isUpperCase && Char.IsUpper(P[i]))
-                        continue;
-
-                    if (Char.ToUpper(P[i]) == Char.ToUpper(banma[j]))
+                    if (P[i] == banma[j])
                     {
                         roso[j] = i;
                         maso = ((k + P.Length) * (roso[j] - b + P.Length)) % P.Length;
