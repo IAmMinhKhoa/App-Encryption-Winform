@@ -69,46 +69,46 @@ namespace ProjectX
             if (textBox1.Text == "")   //chưa nhập bản rõ
             {
                 MessageBox.Show("Vui lòng nhập bản rõ!", "Thông Báo ", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-            else if (ContainNumber(textBox1.Text) || ContainsNonAlphanumericCharacters(textBox1.Text)) //bản rõ không được chứa kí tự đặc biệt và số
-            {
-                MessageBox.Show("Bản rõ chỉ được chứa kí tự là chữ!", "Thông Báo ", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                textBox1.Text = "";
+                textBox5.Text = "";
                 return;
             }
 
             if (textBox3.Text == "") //chưa nhập khoá k
             {
                 MessageBox.Show("Vui lòng nhập khoá để mã hoá!", "Thông Báo ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                textBox5.Text = "";
                 return;
             }
             else if (ContainsNonAlphanumericCharacters(textBox3.Text)) //Khoá k chỉ được chứa kí tự là chữ hoặc số
             {
                 MessageBox.Show("Khoá K chỉ được chứa kí tự là chữ hoặc số!", "Thông Báo ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                textBox3.Text = "";
+                textBox5.Text = "";
                 return;
             }
 
             if (IsNumber(textBox3.Text))  //khoá là số
             {
-                key = Convert.ToInt32(textBox3.Text);
+                key = int.Parse(textBox3.Text);
             }
-            else if (ContainNumber(textBox3.Text))  //khoá là chuỗi vừa chứa chữ và số
+            else //khoá là chuỗi
             {
+                string message = "Khoá K bạn vừa nhập là chuỗi! \nỨng dụng sẽ quy đổi như sau:\n" +
+                                    "- Các kí tự là chữ trong chuỗi sẽ được quy đổi thành số thứ tự trong bảng chữ cái Alphabet.\n" +
+                                    "- Khoá K sẽ được tính bằng tổng các số sau khi đã quy đổi với các kí tự là số nếu có trong chuỗi.";
+                MessageBox.Show(message, "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 key = CalculateStringSum(textBox3.Text);
-            }
-            else  //khoá là chuỗi
-            {
-                key = textBox3.Text.Length;
             }
 
             textBox5.Text = Dichvong.Mahoa(textBox1.Text, key);
+            textBox15.Text = key.ToString();
+
         }
 
         static bool ContainsNonAlphanumericCharacters(string input)
         {
-            // Kiểm tra xem chuỗi có chứa kí tự không phải chữ cái, số hoặc khoảng trắng hay không
-            return Regex.IsMatch(input.Trim(), @"[^a-zA-Z0-9\s]+");
+            // Kiểm tra xem chuỗi có chứa kí tự không phải chữ cái, số, khoảng trắng, dấu cộng hay dấu trừ hay không
+            return Regex.IsMatch(input.Trim(), @"[^a-zA-Z0-9\s\+\-]+");
         }
 
         static bool ContainNumber(string input)
@@ -160,23 +160,21 @@ namespace ProjectX
             if (textBox4.Text == "")   //chưa nhập bản rõ
             {
                 MessageBox.Show("Vui lòng nhập bản mã!", "Thông Báo ", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-            else if (ContainNumber(textBox4.Text) || ContainsNonAlphanumericCharacters(textBox4.Text)) //bản rõ không được chứa kí tự đặc biệt và số
-            {
-                MessageBox.Show("Bản mã chỉ được chứa kí tự là chữ!", "Thông Báo ", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                textBox4.Text = "";
+                textBox6.Text = "";
                 return;
             }
 
             if (textBox2.Text == "") //chưa nhập khoá k
             {
                 MessageBox.Show("Vui lòng nhập khoá để giải hoá!", "Thông Báo ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                textBox6.Text = "";
                 return;
             }
             else if (ContainsNonAlphanumericCharacters(textBox2.Text)) //Khoá k chỉ được chứa kí tự là chữ hoặc số
             {
                 MessageBox.Show("Khoá K chỉ được chứa kí tự là chữ hoặc số!", "Thông Báo ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                textBox2.Text = "";
+                textBox6.Text = "";
                 return;
             }
 
@@ -184,15 +182,16 @@ namespace ProjectX
             {
                 key = Convert.ToInt32(textBox2.Text);
             }
-            else if (ContainNumber(textBox2.Text))  //khoá là chuỗi vừa chứa chữ và số
+            else //khoá là chuỗi 
             {
+                string message = "Khoá K bạn vừa nhập là chuỗi! \nỨng dụng sẽ quy đổi như sau:\n" +
+                                    "- Các kí tự là chữ trong chuỗi sẽ được quy đổi thành số thứ tự trong bảng chữ cái Alphabet.\n" +
+                                    "- Khoá K sẽ được tính bằng tổng các số sau khi đã quy đổi với các kí tự là số nếu có trong chuỗi.";
+                MessageBox.Show(message, "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 key = CalculateStringSum(textBox2.Text);
             }
-            else  //khoá là chuỗi
-            {
-                key = textBox2.Text.Length;
-            }
-            textBox6.Text = Dichvong.Giaima(textBox4.Text, key);
+            textBox6.Text = Dichvong.Giaima(textBox4.Text, key);       
+            textBox16.Text = key.ToString();
         }
 
         private void button5_Click(object sender, EventArgs e)//Button chọn file bản mã
@@ -287,32 +286,75 @@ namespace ProjectX
         {
             try
             {
+                textBox8.Text = "";
+                if (Affine_txtBanro.Text == "")
+                {
+                    MessageBox.Show("Vui lòng nhập bản rõ!", "Error =.=!");
+                    return;
+                }
+                if (Affine_txtKhoaAbanro.Text == "" || Affine_txtKhoaBbanro.Text == "")
+                {
+                    MessageBox.Show("Nhập đầy đủ giá trị a và b của khoá trước khi mã hoã!", "Error =.=!");
+                    return;
+                }
                 int keya = Convert.ToInt32(Affine_txtKhoaAbanro.Text);
                 int keyb = Convert.ToInt32(Affine_txtKhoaBbanro.Text);
-                if (keya >= 214 || keyb >= 214 || keya < 0 || keyb < 0 )
+                int usc = Affine.USCLN(keya, Affine.P.Length);
+                if (keya >= 26 && keyb >= 26)
                 {
-                    MessageBox.Show("Giá trị khóa không được vượt quá không gian Z(214)", "Error =.=!");
-                    Affine_txtBanro.Text = "";
+                    MessageBox.Show("Giá trị a và b không được vượt quá không gian Z(26)", "Error =.=!");
                     Affine_txtKhoaAbanro.Text = "";
                     Affine_txtKhoaBbanro.Text = "";
+                    return;
+                } 
+                else if (keya >= 26)
+                {
+                    MessageBox.Show("Giá trị a không được vượt quá không gian Z(214)", "Error =.=!");
+                    Affine_txtKhoaAbanro.Text = "";
+                    return;
+                } else if (keyb >= 26)
+                {
+                    MessageBox.Show("Giá trị b không được vượt quá không gian Z(214)", "Error =.=!");
+                    Affine_txtKhoaBbanro.Text = "";
+                    return;
                 }
 
-                int usc = Affine.USCLN(keya, Affine.P.Length);
-                if (usc != 1)
+
+                if (keya <= 0 && keyb <= 0)
                 {
-                    MessageBox.Show("Hệ số a= " + keya + " không phù hợp.\nNhập khóa a sao cho USCLN(a,214)=1", "Error =.=!");
-                    Affine_txtBanro.Text = "";
+                    MessageBox.Show("Giá trị a và b phải lớn hơn hoặc bằng 1.", "Error =.=!");
                     Affine_txtKhoaAbanro.Text = "";
                     Affine_txtKhoaBbanro.Text = "";
+                    return;
                 }
-                
-                textBox8.Text = Affine.Mahoa(Affine_txtBanro.Text, keya, keyb);
+                else if (keya <= 0)
+                {
+                    MessageBox.Show("Giá trị a phải lớn hơn hoặc bằng 1.", "Error =.=!");
+                    Affine_txtKhoaAbanro.Text = "";
+                    return;
+
+                } else if (keyb <= 0)
+                {
+                    MessageBox.Show("Giá trị b phải lớn hơn hoặc bằng 1.", "Error =.=!");
+                    Affine_txtKhoaBbanro.Text = "";
+                    return;
+                }
+
+                if (usc != 1)
+                {
+                    MessageBox.Show("Hệ số a = " + keya + " không phù hợp.\nNhập khóa a sao cho USCLN(a,26)=1", "Error =.=!");
+                    Affine_txtKhoaAbanro.Text = "";
+                   
+                    return;
+
+                }
+
+                textBox8.Text = Affine.Mahoa(Affine_txtBanro.Text.Trim(), keya, keyb);
 
             }
             catch (Exception)
             {
                 MessageBox.Show("Nhập lại khóa(Nhập số nguyên)!", "Error =.=! "); 
-                Affine_txtBanro.Text = "";
                 Affine_txtKhoaAbanro.Text = "";
                 Affine_txtKhoaBbanro.Text = "";
             }                                       
@@ -322,26 +364,70 @@ namespace ProjectX
         {
             try
             {
+                textBox7.Text = "";
+                if (Affine_txtBanma.Text == "")
+                {
+                    MessageBox.Show("Vui lòng nhập bản mã!", "Error =.=!");
+                    return;
+                }
+                if (Affine_txtKhoaAbanma.Text == "" || Affine_txtKhoaBbanma.Text == "")
+                {
+                    MessageBox.Show("Nhập đầy đủ giá trị a và b của khoá trước khi giả mã!", "Error =.=!");
+                    return;
+                }
                 int keya = Convert.ToInt32(Affine_txtKhoaAbanma.Text);
                 int keyb = Convert.ToInt32(Affine_txtKhoaBbanma.Text);
-                if (keya >= 214 || keyb >= 214 || keya < 0 || keyb < 0)
-                {
-                    MessageBox.Show("Giá trị khóa không được vượt quá không gian Z(214)", "Error =.=!");
-                    Affine_txtBanma.Text = "";
-                    Affine_txtKhoaAbanma.Text = "";
-                    Affine_txtKhoaBbanma.Text = "";
-                }
-                
                 int usc = Affine.USCLN(keya, Affine.P.Length);
-                if (usc != 1)
+                if (keya >= 26)
                 {
-                    MessageBox.Show("Hệ số a= " + keya + " không phù hợp.\nNhập khóa a sao cho USCLN(a,214)=1", "Error =.=!");
-                    Affine_txtBanma.Text = "";
+                    MessageBox.Show("Giá trị a không được vượt quá không gian Z(26)", "Error =.=!");
+                    Affine_txtKhoaAbanma.Text = "";
+                    return;
+                }
+                else if (keyb >= 26)
+                {
+                    MessageBox.Show("Giá trị b không được vượt quá không gian Z(26)", "Error =.=!");
+                    Affine_txtKhoaBbanma.Text = "";
+                    return;
+                } else if (keya >= 26 && keyb >= 26)
+                {
+                    MessageBox.Show("Giá trị a và b không được vượt quá không gian Z(26)", "Error =.=!");
                     Affine_txtKhoaAbanma.Text = "";
                     Affine_txtKhoaBbanma.Text = "";
+                    return;
                 }
 
-               textBox7.Text = Affine.Giaima(Affine_txtBanma.Text, keya, keyb);
+                if (keya < 0)
+                {
+                    MessageBox.Show("Giá trị a phải lớn hơn hoặc bằng 1.", "Error =.=!");
+                    Affine_txtKhoaAbanma.Text = "";
+                    return;
+
+                }
+                else if (keyb < 0)
+                {
+                    MessageBox.Show("Giá trị b phải lớn hơn hoặc bằng 1.", "Error =.=!");
+                    Affine_txtKhoaBbanma.Text = "";
+                    return;
+                }
+                else if (keya < 0 && keyb < 0)
+                {
+                    MessageBox.Show("Giá trị a và b phải lớn hơn hoặc bằng 1.", "Error =.=!");
+                    Affine_txtKhoaAbanma.Text = "";
+                    Affine_txtKhoaBbanma.Text = "";
+                    return;
+                }
+
+                if (usc != 1)
+                {
+                    MessageBox.Show("Hệ số a = " + keya + " không phù hợp.\nNhập khóa a sao cho USCLN(a,26)=1", "Error =.=!");
+                    Affine_txtKhoaAbanma.Text = "";
+
+                    return;
+
+                }
+
+                textBox7.Text = Affine.Giaima(Affine_txtBanma.Text.Trim(), keya, keyb);
             }
 
             catch (Exception)
@@ -351,10 +437,6 @@ namespace ProjectX
                 Affine_txtKhoaAbanro.Text = "";
                 Affine_txtKhoaBbanro.Text = "";
             }  
-           
-            
-            
-
         }
         //----------------------------Ket thua ma Affine-------------------------------//
         #endregion
@@ -621,13 +703,33 @@ namespace ProjectX
         #region Bat dau he ma Vigenere
         private void Vigenere_btnMahoa_Click(object sender, EventArgs e)
         {
-               
-                int[] arc = Vigenere.chuyenmakey(Vigenere_txtKhoaBanro.Text);
-                int[] dongkhoa = Vigenere.taokhoa(Vigenere_txtBanro.Text, arc);
-                //string result = (arr == null) ? null : arr.Skip(1).Aggregate(arr[0].ToString(), (s, i) => s + "," + i.ToString());
-                textBox9.Text = Vigenere.Mahoa(Vigenere_txtBanro.Text, dongkhoa);
-            
-            
+            if (Vigenere_txtBanro.Text == "")   //chưa nhập bản rõ
+            {
+                MessageBox.Show("Vui lòng nhập bản rõ!", "Thông Báo ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (Vigenere_txtKhoaBanro.Text == "")   //chưa nhập bản rõ
+            {
+                MessageBox.Show("Vui lòng nhập khóa bản rõ!", "Thông Báo ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            else if (Vigenere_txtKhoaBanro.Text.Contains(' '))
+            {
+                MessageBox.Show("Khóa bản rõ không được có khoảng cách", "Thông Báo ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            else if (ContainsNonAlphanumericCharacters(Vigenere_txtKhoaBanro.Text) || ContainNumber(Vigenere_txtKhoaBanro.Text))
+            {
+                MessageBox.Show("Khóa bản rõ không được có ký tự đặc biệt và số", "Thông Báo ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            int[] arc = Vigenere.chuyenmakey(Vigenere_txtKhoaBanro.Text);
+            int[] dongkhoa = Vigenere.taokhoa(Vigenere_txtBanro.Text, arc);
+            //string result = (arr == null) ? null : arr.Skip(1).Aggregate(arr[0].ToString(), (s, i) => s + "," + i.ToString());
+            textBox9.Text = Vigenere.Mahoa(Vigenere_txtBanro.Text, dongkhoa);
+
+
         }
         private void Vigenere_btnClear_Click(object sender, EventArgs e)
         {
@@ -635,9 +737,29 @@ namespace ProjectX
             Vigenere_txtKhoaBanro.Text = "";
             Vigenere_txtBanro.Text = "";
             Vigenere_txtKhoaBanma.Text = "";
-        }       
+        }
         private void Vigenere_btnGiaima_Click(object sender, EventArgs e)
         {
+            if (Vigenere_txtBanma.Text == "")   //chưa nhập bản rõ
+            {
+                MessageBox.Show("Vui lòng nhập bản rõ!", "Thông Báo ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (Vigenere_txtKhoaBanma.Text == "")   //chưa nhập bản rõ
+            {
+                MessageBox.Show("Vui lòng nhập khóa bản rõ!", "Thông Báo ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            else if (Vigenere_txtKhoaBanma.Text.Contains(' '))
+            {
+                MessageBox.Show("Khóa bản rõ không được có khoảng cách", "Thông Báo ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            else if (ContainsNonAlphanumericCharacters(Vigenere_txtKhoaBanma.Text) || ContainNumber(Vigenere_txtKhoaBanma.Text))
+            {
+                MessageBox.Show("Khóa bản rõ không được có ký tự đặc biệt và số", "Thông Báo ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             int[] arc = Vigenere.chuyenmakey(Vigenere_txtKhoaBanma.Text);
             int[] dongkhoa = Vigenere.taokhoa(Vigenere_txtBanma.Text, arc);
             //string result = (arr == null) ? null : arr.Skip(1).Aggregate(arr[0].ToString(), (s, i) => s + "," + i.ToString());
@@ -655,7 +777,7 @@ namespace ProjectX
                 file.Close();
             }
         }
-    
+
         private void Vigenere_btnChonFileBanma_Click(object sender, EventArgs e)
         {
             OpenFileDialog open = new OpenFileDialog();
@@ -691,6 +813,7 @@ namespace ProjectX
                 file.Close();
             }
         }
+
 
         #endregion
 
@@ -1700,6 +1823,16 @@ namespace ProjectX
         }
 
         private void AutoCode_txtKhoaBanma_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox15_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox16_TextChanged(object sender, EventArgs e)
         {
 
         }

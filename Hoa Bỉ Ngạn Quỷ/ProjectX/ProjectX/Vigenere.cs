@@ -7,24 +7,28 @@ namespace ProjectX
 {
     class Vigenere
     {
-        public static string nguon ="ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        public static string nguon = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+
         public static char[] P = nguon.ToCharArray();
-        public static int[] taokhoa(string vao,int[] key)
+
+
+
+        public static int[] taokhoa(string vao, int[] key)
         {
             char[] banro = vao.ToCharArray();
             int l = banro.Length;
             int[] plant = new int[l];
-            for(int i=0;i<l;i++)
+            for (int i = 0; i < l; i++)
             {
-                
-                plant[i] = key[i %key.Length];
+                plant[i] = key[i % key.Length];
             }
+
             return plant;
-                              
         }
-        public static int[] chuyenmakey (string s)
+        public static int[] chuyenmakey(string s)
         {
-            char[] banro = s.ToCharArray();        
+
+            char[] banro = s.ToCharArray();
             int l = banro.Length;
             int[] temp = new int[l];
             int[] roso = new int[l];
@@ -33,38 +37,45 @@ namespace ProjectX
             {
                 for (int i = 0; i < P.Length; i++)
                 {
+
                     if (P[i] == banro[j])
                     {
-                        roso[j] = i;                        
+                        roso[j] = i;
                         temp[j] = roso[j];
+
                     }
                 }
                 j++;
             }
-            
+
             return temp;
         }
-        public static string Mahoa(string s,int[] khoa)
+        public static string Mahoa(string s, int[] khoa)
         {
             char[] lengt = s.ToCharArray();
-            int l = lengt.Length;            
+            int l = lengt.Length;
+
             int[] roso = new int[l];
             char[] temp = new char[l];
             int maso;
             for (int j = 0; j < l; j++)
             {
+                temp[j] = lengt[j];
                 for (int i = 0; i < P.Length; i++)
                 {
+
                     if (P[i] == lengt[j])
                     {
                         roso[j] = i;
                         maso = (roso[j] + khoa[j]) % P.Length;
+
                         temp[j] = P[maso];
                     }
                 }
             }
 
             string tg = new string(temp);
+
             return tg;
 
         }
@@ -72,12 +83,14 @@ namespace ProjectX
         {
             char[] lengt = s.ToCharArray();
             int l = lengt.Length;
+
             // int[] khoa = taokhoa(s, k);
             int[] roso = new int[l];
             char[] temp = new char[l];
             int maso;
             for (int j = 0; j < l; j++)
             {
+                temp[j] = lengt[j];
                 for (int i = 0; i < P.Length; i++)
                 {
                     if (P[i] == lengt[j])
@@ -95,6 +108,6 @@ namespace ProjectX
 
         }
 
-     }
-    
+    }
+
 }
