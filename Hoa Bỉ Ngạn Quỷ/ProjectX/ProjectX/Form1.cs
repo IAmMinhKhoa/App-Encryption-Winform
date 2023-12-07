@@ -71,7 +71,7 @@ namespace ProjectX
                 MessageBox.Show("Vui lòng nhập bản rõ!", "Thông Báo ", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            else if (DoesNotContainNumber(textBox1.Text) || ContainsNonAlphanumericCharacters(textBox1.Text)) //bản rõ không được chứa kí tự đặc biệt và số
+            else if (ContainNumber(textBox1.Text) || ContainsNonAlphanumericCharacters(textBox1.Text)) //bản rõ không được chứa kí tự đặc biệt và số
             {
                 MessageBox.Show("Bản rõ chỉ được chứa kí tự là chữ!", "Thông Báo ", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 textBox1.Text = "";
@@ -93,7 +93,7 @@ namespace ProjectX
             {
                 key = Convert.ToInt32(textBox3.Text);
             }
-            else if (hasNumber(textBox3.Text))  //khoá là chuỗi vừa chứa chữ và số
+            else if (ContainNumber(textBox3.Text))  //khoá là chuỗi vừa chứa chữ và số
             {
                 key = CalculateStringSum(textBox3.Text);
             }
@@ -111,28 +111,18 @@ namespace ProjectX
             return Regex.IsMatch(input.Trim(), @"[^a-zA-Z0-9\s]+");
         }
 
-        static bool DoesNotContainNumber(string input)
+        static bool ContainNumber(string input)
         {
+            // Kiểm tra xem chuỗi có chứa số không
             return input.Any(c => char.IsDigit(c));
         }
 
         static bool IsNumber(string input)
         {
+            // Kiểm tra xem chuỗi có phải là số nguyên
             int number;
             bool isNumeric = int.TryParse(input, out number);
             return isNumeric;
-        }
-
-        static bool hasNumber(string input)
-        {
-            foreach (char c in input)
-            {
-                if (char.IsDigit(c))
-                {
-                    return true;
-                }
-            }
-            return false;
         }
 
         static int CalculateStringSum(string input)
@@ -172,7 +162,7 @@ namespace ProjectX
                 MessageBox.Show("Vui lòng nhập bản mã!", "Thông Báo ", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            else if (DoesNotContainNumber(textBox4.Text) || ContainsNonAlphanumericCharacters(textBox4.Text)) //bản rõ không được chứa kí tự đặc biệt và số
+            else if (ContainNumber(textBox4.Text) || ContainsNonAlphanumericCharacters(textBox4.Text)) //bản rõ không được chứa kí tự đặc biệt và số
             {
                 MessageBox.Show("Bản mã chỉ được chứa kí tự là chữ!", "Thông Báo ", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 textBox4.Text = "";
@@ -194,7 +184,7 @@ namespace ProjectX
             {
                 key = Convert.ToInt32(textBox2.Text);
             }
-            else if (hasNumber(textBox2.Text))  //khoá là chuỗi vừa chứa chữ và số
+            else if (ContainNumber(textBox2.Text))  //khoá là chuỗi vừa chứa chữ và số
             {
                 key = CalculateStringSum(textBox2.Text);
             }
