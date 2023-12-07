@@ -1263,7 +1263,7 @@
             this.tabPage5.Name = "tabPage5";
             this.tabPage5.Size = new System.Drawing.Size(1526, 777);
             this.tabPage5.TabIndex = 4;
-            this.tabPage5.Text = "Vigenefre";
+            this.tabPage5.Text = "Vigenère";
             this.tabPage5.UseVisualStyleBackColor = true;
             // 
             // groupBox5
