@@ -350,6 +350,7 @@
             this.txtNhapVanBan1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtNhapVanBan1.Multiline = true;
             this.txtNhapVanBan1.Name = "txtNhapVanBan1";
+            this.txtNhapVanBan1.ReadOnly = true;
             this.txtNhapVanBan1.Size = new System.Drawing.Size(242, 158);
             this.txtNhapVanBan1.TabIndex = 9;
             // 
@@ -379,6 +380,7 @@
             this.txtXuatVanBan.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtXuatVanBan.Multiline = true;
             this.txtXuatVanBan.Name = "txtXuatVanBan";
+            this.txtXuatVanBan.ReadOnly = true;
             this.txtXuatVanBan.Size = new System.Drawing.Size(245, 164);
             this.txtXuatVanBan.TabIndex = 2;
             this.txtXuatVanBan.TextChanged += new System.EventHandler(this.txtXuatVanBan_TextChanged);
@@ -1074,6 +1076,7 @@
             this.textBox12.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.textBox12.Multiline = true;
             this.textBox12.Name = "textBox12";
+            this.textBox12.ReadOnly = true;
             this.textBox12.Size = new System.Drawing.Size(445, 176);
             this.textBox12.TabIndex = 13;
             // 
@@ -1083,6 +1086,7 @@
             this.textBox11.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.textBox11.Multiline = true;
             this.textBox11.Name = "textBox11";
+            this.textBox11.ReadOnly = true;
             this.textBox11.Size = new System.Drawing.Size(469, 155);
             this.textBox11.TabIndex = 12;
             // 
@@ -1357,6 +1361,7 @@
             this.textBox10.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.textBox10.Multiline = true;
             this.textBox10.Name = "textBox10";
+            this.textBox10.ReadOnly = true;
             this.textBox10.Size = new System.Drawing.Size(429, 180);
             this.textBox10.TabIndex = 9;
             // 
@@ -1366,6 +1371,7 @@
             this.textBox9.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.textBox9.Multiline = true;
             this.textBox9.Name = "textBox9";
+            this.textBox9.ReadOnly = true;
             this.textBox9.Size = new System.Drawing.Size(453, 180);
             this.textBox9.TabIndex = 8;
             this.textBox9.TextChanged += new System.EventHandler(this.textBox9_TextChanged);

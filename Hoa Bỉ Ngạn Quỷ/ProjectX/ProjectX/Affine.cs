@@ -75,10 +75,10 @@ namespace ProjectX
 
                 for (int i = 0; i < P.Length; i++)
                 {
-                    if (P[i] == banro[j])
+                    if (P[i] == banro[j]) //Xác định thứ tự của kí tự trong bảng alphabet
                     {
                         roso[j] = i;
-                        maso = (roso[j] * a + b) % P.Length;
+                        maso = (a * roso[j] + b) % P.Length;//CT: a.x+b mod 26
                         temp[j] = P[maso];
                     }
                 }
@@ -110,10 +110,10 @@ namespace ProjectX
 
                 for (int i = 0; i < P.Length; i++)
                 {
-                    if (P[i] == banma[j])
+                    if (P[i] == banma[j])    //Xác định thứ tự của kí tự trong bảng alphabet
                     {
                         roso[j] = i;
-                        maso = ((k + P.Length) * (roso[j] - b + P.Length)) % P.Length;
+                        maso = ((k + P.Length) * (roso[j] - b + P.Length)) % P.Length; //CT a^-1.(y - b) mod 26
                         temp[j] = P[maso];
                     }
                 }

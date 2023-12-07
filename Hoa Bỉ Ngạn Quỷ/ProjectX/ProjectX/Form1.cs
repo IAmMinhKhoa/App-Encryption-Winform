@@ -94,7 +94,7 @@ namespace ProjectX
             else //khoá là chuỗi
             {
                 string message = "Khoá K bạn vừa nhập là chuỗi! \nỨng dụng sẽ quy đổi như sau:\n" +
-                                    "- Các kí tự là chữ trong chuỗi sẽ được quy đổi thành số thứ tự trong bảng chữ cái Alphabet.\n" +
+                                    "- Các kí tự là chữ trong chuỗi sẽ được quy đổi thành số thứ tự trong bảng chữ cái Alphabet (0-25).\n" +
                                     "- Khoá K sẽ được tính bằng tổng các số sau khi đã quy đổi với các kí tự là số nếu có trong chuỗi.";
                 MessageBox.Show(message, "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 key = CalculateStringSum(textBox3.Text);
@@ -132,7 +132,7 @@ namespace ProjectX
             {
                 if (char.IsLetter(c))
                 {
-                    int letterValue = char.ToUpper(c) - 'A' + 1;
+                    int letterValue = char.ToUpper(c) - 'A';
                     sum += letterValue;
                 }
                 else if (char.IsDigit(c))
@@ -140,10 +140,6 @@ namespace ProjectX
                     int digitValue = int.Parse(c.ToString());
                     sum += digitValue;
                 }
-            }
-            if(sum > 26)
-            {
-                sum = sum % 26;
             }
             return sum;
         }
@@ -185,7 +181,7 @@ namespace ProjectX
             else //khoá là chuỗi 
             {
                 string message = "Khoá K bạn vừa nhập là chuỗi! \nỨng dụng sẽ quy đổi như sau:\n" +
-                                    "- Các kí tự là chữ trong chuỗi sẽ được quy đổi thành số thứ tự trong bảng chữ cái Alphabet.\n" +
+                                    "- Các kí tự là chữ trong chuỗi sẽ được quy đổi thành số thứ tự trong bảng chữ cái Alphabet (0-25).\n" +
                                     "- Khoá K sẽ được tính bằng tổng các số sau khi đã quy đổi với các kí tự là số nếu có trong chuỗi.";
                 MessageBox.Show(message, "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 key = CalculateStringSum(textBox2.Text);
@@ -297,6 +293,8 @@ namespace ProjectX
                     MessageBox.Show("Nhập đầy đủ giá trị a và b của khoá trước khi mã hoã!", "Error =.=!");
                     return;
                 }
+                
+     
                 int keya = Convert.ToInt32(Affine_txtKhoaAbanro.Text);
                 int keyb = Convert.ToInt32(Affine_txtKhoaBbanro.Text);
                 int usc = Affine.USCLN(keya, Affine.P.Length);
@@ -505,10 +503,38 @@ namespace ProjectX
             Hill_txtKhoaDbanma.Text = "";                                                                                        
         }
 
+        static bool ContainsCharacters(string input)
+        {
+            return Regex.IsMatch(input.Trim(), @"[^A-Z]+");
+        }
+
+        static string RemoveSpaces(string input)
+        {
+            return input.Trim().Replace(" ", "");
+        }
+
         private void Hill_btnMahoa_Click(object sender, EventArgs e)//Button mã hóa Hill
         {
             try
             {
+                textBox13.Text = "";
+                if (Hill_txtBanro.Text=="")
+                {
+                    MessageBox.Show("Vui lòng nhập bản rõ!", "Error =.=!");
+                    return;
+
+                } else if(ContainsCharacters(Hill_txtBanro.Text))
+                {
+                    MessageBox.Show("Bản rõ bắt buộc là chữ HOA và không chứa kí tự kiểu khác!", "Error =.=!");
+                    Hill_txtBanro.Text = "";
+                    return;
+                }
+                if (Hill_txtKhoaAbanro.Text == "" || Hill_txtKhoaBbanro.Text == "" || Hill_txtKhoaCbanro.Text == "" || Hill_txtKhoaDbanro.Text == "")
+                {
+                    MessageBox.Show("Vui lòng nhập đầy đủ ma trận!", "Error =.=!");   
+                    return;
+                }
+                
                 int keya = Convert.ToInt32(Hill_txtKhoaAbanro.Text);
                 int keyb = Convert.ToInt32(Hill_txtKhoaBbanro.Text);
                 int keyc = Convert.ToInt32(Hill_txtKhoaCbanro.Text);
@@ -516,7 +542,6 @@ namespace ProjectX
                 if (keya >= 214 || keya < 0 || keyb >= 214 || keyb < 0 || keyc >= 214 || keyc < 0 || keyd >= 214 || keyd < 0)
                 {
                     MessageBox.Show("Lỗi nhập khóa.\n Nhập số nguyên không được vượt quá không gian Z(214)", "Error =.=!");
-                    Hill_txtBanro.Text = "";
                     Hill_txtKhoaAbanro.Text = "";
                     Hill_txtKhoaBbanro.Text = "";
                     Hill_txtKhoaCbanro.Text = "";
@@ -527,7 +552,7 @@ namespace ProjectX
                 if (Check != 1)
                 {
                     MessageBox.Show("Ma trận không hợp lệ, không tồn tại MT khả nghịch.\nNhập lại MT sao cho (|DetK|,214)=1 ", "Error =.=!");
-                    Hill_txtBanro.Text = "";
+                   
                     Hill_txtKhoaAbanro.Text = "";
                     Hill_txtKhoaBbanro.Text = "";
                     Hill_txtKhoaCbanro.Text = "";
@@ -549,6 +574,24 @@ namespace ProjectX
         {
             try
             {
+                textBox14.Text = "";
+                if (Hill_txtBanma.Text == "")
+                {
+                    MessageBox.Show("Vui lòng nhập bản mã!", "Error =.=!");
+                    return;
+
+                }
+                else if (ContainsCharacters(Hill_txtBanma.Text))
+                {
+                    MessageBox.Show("Bản mã bắt buộc là chữ HOA và không chứa kí tự kiểu khác!", "Error =.=!");
+                    Hill_txtBanro.Text = "";
+                    return;
+                }
+                if (Hill_txtKhoaAbanma.Text == "" || Hill_txtKhoaBbanma.Text == "" || Hill_txtKhoaCbanma.Text == "" || Hill_txtKhoaDbanma.Text == "")
+                {
+                    MessageBox.Show("Vui lòng nhập đầy đủ ma trận!", "Error =.=!");
+                    return;
+                }
                 int keya = Convert.ToInt32(Hill_txtKhoaAbanma.Text);
                 int keyb = Convert.ToInt32(Hill_txtKhoaBbanma.Text);
                 int keyc = Convert.ToInt32(Hill_txtKhoaCbanma.Text);
@@ -556,7 +599,6 @@ namespace ProjectX
                 if (keya >= 214 || keya < 0 || keyb >= 214 || keyb < 0 || keyc >= 214 || keyc < 0 || keyd >= 214 || keyd < 0)
                 {
                     MessageBox.Show("Lỗi nhập khóa.\n Nhập số nguyên không được vượt quá không gian Z(214)", "Error =.=!");
-                    Hill_txtBanma.Text = "";
                     Hill_txtKhoaAbanma.Text = "";
                     Hill_txtKhoaBbanma.Text = "";
                     Hill_txtKhoaCbanma.Text = "";
@@ -568,7 +610,6 @@ namespace ProjectX
                 if (Check != 1)
                 {
                     MessageBox.Show("Ma trận không hợp lệ, không tồn tại MT khả nghịch.\nNhập lại MT sao cho (|DetK|,214)=1 ", "Error =.=!");
-                    Hill_txtBanma.Text = "";
                     Hill_txtKhoaAbanma.Text = "";
                     Hill_txtKhoaBbanma.Text = "";
                     Hill_txtKhoaCbanma.Text = "";
@@ -654,7 +695,9 @@ namespace ProjectX
             AutoCode_txtBanma.Text = "";
             AutoCode_txtBanro.Text = "";
             AutoCode_txtKhoaBanma.Text = "";
-            AutoCode_txtKhoaBanro.Text = "";        
+            AutoCode_txtKhoaBanro.Text = "";
+            textBox12.Text = "";
+            textBox11.Text = "";
         }
 
         private void AutoCode_btnMahoa_Click(object sender, EventArgs e)//Button Ma hoa tự sinh
@@ -662,12 +705,35 @@ namespace ProjectX
 
             try
             {
+                textBox11.Text = "";
+                if (AutoCode_txtBanro.Text == "")
+                {
+                    MessageBox.Show("Vui lòng nhập bản rõ!", "Thông Báo ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                else if (AutoCode_txtBanro.Text.Contains(' '))
+                {
+                    MessageBox.Show("Bản rõ không được có khoảng cách", "Thông Báo ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    AutoCode_txtBanro.Text = RemoveWhitespace(AutoCode_txtBanro.Text);
+                    return;
+                }
+                else if (ContainsNonAlphanumericCharacters(AutoCode_txtBanro.Text) || ContainNumber(AutoCode_txtBanro.Text))
+                {
+                    MessageBox.Show("Bản rõ không được có ký tự đặc biệt và số", "Thông Báo ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                if(AutoCode_txtKhoaBanro.Text == "")
+                {
+                    MessageBox.Show("Vui lòng nhập khoá!", "Thông Báo ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
                 int key = Convert.ToInt32(AutoCode_txtKhoaBanro.Text);
                 if (key >= 214 || key < 0)
                 {
                     MessageBox.Show("Giá trị khóa không được vượt quá không gian Z(214)", "Error =.=!");
-                    AutoCode_txtBanro.Text = "";
-                    AutoCode_txtKhoaBanro.Text ="";
+                    AutoCode_txtKhoaBanro.Text = "";
                 }
                 int[] arr = autocode.taokhoa(AutoCode_txtBanro.Text, key);
                 string result = (arr == null) ? null : arr.Skip(1).Aggregate(arr[0].ToString(), (s, i) => s + "," + i.ToString());
@@ -678,7 +744,6 @@ namespace ProjectX
             catch (Exception)
             {
                 MessageBox.Show("Nhập lại khóa(Nhập số nguyên)!", "Error =.=! ");
-                AutoCode_txtBanro.Text = "";
                 AutoCode_txtKhoaBanro.Text = "";
             }
 
@@ -688,13 +753,38 @@ namespace ProjectX
         {
             try
             {
+                textBox12.Text = "";
+
+                if (AutoCode_txtBanma.Text == "")
+                {
+                    MessageBox.Show("Vui lòng nhập bản mã!", "Thông Báo ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                else if (AutoCode_txtBanma.Text.Contains(' '))
+                {
+                    MessageBox.Show("Bản mã không được có khoảng cách", "Thông Báo ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    AutoCode_txtBanro.Text = RemoveWhitespace(AutoCode_txtBanma.Text);
+                    return;
+                }
+                else if (ContainsNonAlphanumericCharacters(AutoCode_txtBanma.Text) || ContainNumber(AutoCode_txtBanma.Text))
+                {
+                    MessageBox.Show("Bản mã không được có ký tự đặc biệt và số", "Thông Báo ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                if (AutoCode_txtKhoaBanma.Text == "")
+                {
+                    MessageBox.Show("Vui lòng nhập khoá!", "Thông Báo ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
                 int[] keyb = autocode.ParseStringToIntArray(AutoCode_txtKhoaBanma.Text);
                 textBox12.Text = autocode.Giaima(AutoCode_txtBanma.Text, keyb);
             }
             catch (Exception)
             {
                 MessageBox.Show("Nhập lại khóa.\nNhập dãy số nguyên(1,2,7,2,5...) có số phần tử bằng số phần tử bản mã!", "Error =.=! ");
-                AutoCode_txtBanma.Text = "";
+
                 AutoCode_txtKhoaBanma.Text = "";
             }
         }
@@ -703,13 +793,56 @@ namespace ProjectX
         #region Bat dau he ma Vigenere
         private void Vigenere_btnMahoa_Click(object sender, EventArgs e)
         {
-               
-                int[] arc = Vigenere.chuyenmakey(Vigenere_txtKhoaBanro.Text);
-                int[] dongkhoa = Vigenere.taokhoa(Vigenere_txtBanro.Text, arc);
-                //string result = (arr == null) ? null : arr.Skip(1).Aggregate(arr[0].ToString(), (s, i) => s + "," + i.ToString());
-                textBox9.Text = Vigenere.Mahoa(Vigenere_txtBanro.Text, dongkhoa);
+            textBox9.Text = "";
+            if (Vigenere_txtBanro.Text == "")
+            {
+                MessageBox.Show("Vui lòng nhập bản rõ", "Error =.=!");
+                return;
+            }
+            else if (Vigenere_txtBanro.Text.Contains(" "))
+            {
+                MessageBox.Show("Bản rõ không được chứa khoảng trắng!", "Error =.=!");
+                Vigenere_txtBanro.Text = RemoveWhitespace(Vigenere_txtBanro.Text);
+                return;
+            }
+
+            if (Vigenere_txtKhoaBanro.Text == "")
+            {
+                MessageBox.Show("Vui lòng nhập khoá!", "Error =.=!");
+                return;
+            }
+            else if (Vigenere_txtKhoaBanro.Text.Length < 2)
+            {
+                MessageBox.Show("Vui lòng nhập khoá phải từ 2 kí tự trở lên!", "Error =.=!");
+                return;
+            }
+            else if (Vigenere_txtKhoaBanro.Text.Contains(" "))
+            {
+                MessageBox.Show("Khoá nhập vào không được chứa khoảng trắng!", "Error =.=!");
+                Vigenere_txtKhoaBanro.Text = RemoveWhitespace(Vigenere_txtKhoaBanro.Text);
+                return;
+            }
+            else if (ContainsCharacters1(Vigenere_txtKhoaBanro.Text))
+            {
+                MessageBox.Show("Khoá nhập vào phải là chuỗi chữ cái!", "Error =.=!");
+                Vigenere_txtKhoaBanro.Text = "";
+                return;
+            } 
+            int[] arc = Vigenere.ChuyenMaKey(Vigenere_txtKhoaBanro.Text);
+            int[] dongkhoa = Vigenere.TaoKhoa(Vigenere_txtBanro.Text, arc);
+            //string result = (arr == null) ? null : arr.Skip(1).Aggregate(arr[0].ToString(), (s, i) => s + "," + i.ToString());
+            textBox9.Text = Vigenere.MaHoa(Vigenere_txtBanro.Text, dongkhoa);
             
             
+        }
+        static bool ContainsCharacters1(string input)
+        {
+            return Regex.IsMatch(input.Trim(), @"[^a-zA-Z]+");
+        }
+
+        public static string RemoveWhitespace(string input)
+        {
+            return new string(input.Where(c => !char.IsWhiteSpace(c)).ToArray());
         }
         private void Vigenere_btnClear_Click(object sender, EventArgs e)
         {
@@ -720,10 +853,45 @@ namespace ProjectX
         }       
         private void Vigenere_btnGiaima_Click(object sender, EventArgs e)
         {
-            int[] arc = Vigenere.chuyenmakey(Vigenere_txtKhoaBanma.Text);
-            int[] dongkhoa = Vigenere.taokhoa(Vigenere_txtBanma.Text, arc);
+            textBox10.Text = "";
+            if (Vigenere_txtBanma.Text == "")
+            {
+                MessageBox.Show("Vui lòng nhập bản mã!", "Error =.=!");
+                return;
+            } else if (Vigenere_txtBanma.Text.Contains(" "))
+            {
+                MessageBox.Show("Bản mã không được chứa khoảng trắng!", "Error =.=!");
+                Vigenere_txtBanma.Text = RemoveWhitespace(Vigenere_txtBanma.Text);
+                return;
+            }
+
+            if (Vigenere_txtKhoaBanma.Text == "")
+            {
+                MessageBox.Show("Vui lòng nhập khoá!", "Error =.=!");
+                return;
+            }
+            else if (Vigenere_txtKhoaBanma.Text.Length < 2)
+            {
+                MessageBox.Show("Vui lòng nhập khoá phải từ 2 kí tự trở lên!", "Error =.=!");
+                return;
+            }
+            else if (Vigenere_txtKhoaBanma.Text.Contains(" "))
+            {
+                MessageBox.Show("Khoá nhập vào không được chứa khoảng trắng!", "Error =.=!");
+                Vigenere_txtKhoaBanma.Text = RemoveWhitespace(Vigenere_txtKhoaBanma.Text);
+                return;
+            }
+            else if (ContainsCharacters1(Vigenere_txtKhoaBanma.Text))
+            {
+                MessageBox.Show("Khoá nhập vào phải là chuỗi chữ cái!", "Error =.=!");
+                Vigenere_txtKhoaBanma.Text = "";
+                return;
+            }
+            
+            int[] arc = Vigenere.ChuyenMaKey(Vigenere_txtKhoaBanma.Text);
+            int[] dongkhoa = Vigenere.TaoKhoa(Vigenere_txtBanma.Text, arc);
             //string result = (arr == null) ? null : arr.Skip(1).Aggregate(arr[0].ToString(), (s, i) => s + "," + i.ToString());
-            textBox10.Text = Vigenere.Giaima(Vigenere_txtBanma.Text, dongkhoa);
+            textBox10.Text = Vigenere.GiaiMa(Vigenere_txtBanma.Text, dongkhoa);
         }
 
         private void Vigenere_btnChonfileBanro_Click(object sender, EventArgs e)
@@ -790,9 +958,9 @@ namespace ProjectX
         {
             btnkhoatudongmoi.Hide();
             radioButton1.Checked = true;
-             HamMaTranKhoa();
+            HamMaTranKhoa();
             MaTran();
-           
+
             btnGiaiMa4.Enabled = false;
             btnMaHoa4.Enabled = false;
             pictureBox2.Hide();
@@ -800,44 +968,71 @@ namespace ProjectX
 
         private void btntaokhoa1_Click(object sender, EventArgs e)
         {
-            if (txtp.Text == "" || txtq.Text == "")
-                MessageBox.Show("Bạn phải nhập đủ 2 số ", "Thông Báo ", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            else
+            if (txtp.Text == "")
             {
-                p = Convert.ToInt16(txtp.Text);
-                q = Convert.ToInt16(txtq.Text);
-                if (p == q)
-                {
-                    MessageBox.Show("Bạn phải nhập 2 số khác nhau ", " Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    txtq.Focus();
-                }
-                else
-                {
-                    if (!kiemTraNguyenTo(p) || p <= 1)
-                    {
-                        MessageBox.Show("Bạn phải nhập số nguyên  tố [p] lớn hơn 1 ", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        txtp.Focus();
-                    }
-                    else
-                    {
-                        if (!kiemTraNguyenTo(q) || q <= 1)
-                        {
-                            MessageBox.Show("Bạn phải nhập số nguyên  tố [q] lớn hơn 1 ", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            txtq.Focus();
-                        }
-                        else
-                        {
-                            taoKhoa();
-                            txtp.Text = "" + p;
-                            txtq.Text = "" + q;
-                            txtn.Text = "" + n;
-                            txtn2.Text = "" + phi_n;
-                            txtd.Text = "" + d;
-                            active_key = true;
-                        }
-                    }
-                }
+                MessageBox.Show(" p không được trống ", "Thông Báo ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
+
+            else if (!IsNumber(txtp.Text))
+            {
+                MessageBox.Show(" p phải là số ", "Thông Báo ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            else if (txtp.Text.Contains(' '))
+            {
+                MessageBox.Show(" p không được có khoảng cách ", "Thông Báo ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+
+            p = Convert.ToInt16(txtp.Text);
+            if (!kiemTraNguyenTo(p) || p <= 1)
+            {
+                MessageBox.Show(" p phải là số nguyên tố lớn hơn 1 ", "Thông Báo ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (txtq.Text == "")
+            {
+                MessageBox.Show(" q không được trống ", "Thông Báo ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            else if (!IsNumber(txtq.Text))
+            {
+                MessageBox.Show(" q phải là số ", "Thông Báo ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            else if (txtq.Text.Contains(' '))
+            {
+                MessageBox.Show(" q không được có khoảng cách ", "Thông Báo ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            q = Convert.ToInt16(txtq.Text);
+            if (!kiemTraNguyenTo(q) || q <= 1)
+            {
+                MessageBox.Show(" q phải là số nguyên tố lớn hơn 1 ", "Thông Báo ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (p == q)
+            {
+                MessageBox.Show("Bạn phải nhập 2 số khác nhau ", " Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+
+            taoKhoa();
+            txtp.Text = "" + p;
+            txtq.Text = "" + q;
+            txtn.Text = "" + n;
+            txtn2.Text = "" + phi_n;
+            txtd.Text = "" + d;
+            active_key = true;
         }
 
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
@@ -1026,7 +1221,7 @@ namespace ProjectX
                     ma += by[i].ToString();
                 }
                 MessageBox.Show(by.Length.ToString());
-              
+
                 label16_Click(sender, e);
                 txt_banro2.Text = txtSHA2.Text;
             }
@@ -1034,7 +1229,7 @@ namespace ProjectX
 
         private void label29_Click(object sender, EventArgs e)
         {
-           
+
         }
         #endregion
 
@@ -1167,7 +1362,7 @@ namespace ProjectX
 
         private void button7_Click(object sender, EventArgs e)
         {
-            Close(); 
+            Close();
         }
 
         private void button8_Click(object sender, EventArgs e)

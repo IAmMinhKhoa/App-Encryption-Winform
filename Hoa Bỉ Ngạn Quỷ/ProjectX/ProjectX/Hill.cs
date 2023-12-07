@@ -197,9 +197,5 @@ namespace ProjectX
             string result = new string(temp);
             return result;
         }
-        
-     
-
-
-        }
+    }
 }
