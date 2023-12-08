@@ -307,12 +307,12 @@ namespace ProjectX
                 } 
                 else if (keya >= 26)
                 {
-                    MessageBox.Show("Giá trị a không được vượt quá không gian Z(214)", "Error =.=!");
+                    MessageBox.Show("Giá trị a không được vượt quá không gian Z(26)", "Error =.=!");
                     Affine_txtKhoaAbanro.Text = "";
                     return;
                 } else if (keyb >= 26)
                 {
-                    MessageBox.Show("Giá trị b không được vượt quá không gian Z(214)", "Error =.=!");
+                    MessageBox.Show("Giá trị b không được vượt quá không gian Z(26)", "Error =.=!");
                     Affine_txtKhoaBbanro.Text = "";
                     return;
                 }
@@ -375,7 +375,7 @@ namespace ProjectX
                 }
                 int keya = Convert.ToInt32(Affine_txtKhoaAbanma.Text);
                 int keyb = Convert.ToInt32(Affine_txtKhoaBbanma.Text);
-                int usc = Affine.USCLN(keya, Affine.P.Length);
+                int usc = Affine.USCLN(keya, 26);
                 if (keya >= 26)
                 {
                     MessageBox.Show("Giá trị a không được vượt quá không gian Z(26)", "Error =.=!");
@@ -523,12 +523,20 @@ namespace ProjectX
                     MessageBox.Show("Vui lòng nhập bản rõ!", "Error =.=!");
                     return;
 
-                } else if(ContainsCharacters(Hill_txtBanro.Text))
+                }
+                else if (Hill_txtBanro.Text.Contains(" "))
+                {
+                    MessageBox.Show("Bản rõ không được chứa khoảng trắng!", "Error =.=!");
+                    Hill_txtBanro.Text = RemoveSpaces(Hill_txtBanro.Text);
+                    return;
+                }
+                else if(ContainsCharacters(Hill_txtBanro.Text))
                 {
                     MessageBox.Show("Bản rõ bắt buộc là chữ HOA và không chứa kí tự kiểu khác!", "Error =.=!");
                     Hill_txtBanro.Text = "";
                     return;
-                }
+                } 
+                
                 if (Hill_txtKhoaAbanro.Text == "" || Hill_txtKhoaBbanro.Text == "" || Hill_txtKhoaCbanro.Text == "" || Hill_txtKhoaDbanro.Text == "")
                 {
                     MessageBox.Show("Vui lòng nhập đầy đủ ma trận!", "Error =.=!");   
@@ -539,19 +547,19 @@ namespace ProjectX
                 int keyb = Convert.ToInt32(Hill_txtKhoaBbanro.Text);
                 int keyc = Convert.ToInt32(Hill_txtKhoaCbanro.Text);
                 int keyd = Convert.ToInt32(Hill_txtKhoaDbanro.Text);
-                if (keya >= 214 || keya < 0 || keyb >= 214 || keyb < 0 || keyc >= 214 || keyc < 0 || keyd >= 214 || keyd < 0)
+                if (keya >= 26 || keya < 0 || keyb >= 26 || keyb < 0 || keyc >= 26 || keyc < 0 || keyd >= 26 || keyd < 0)
                 {
-                    MessageBox.Show("Lỗi nhập khóa.\n Nhập số nguyên không được vượt quá không gian Z(214)", "Error =.=!");
+                    MessageBox.Show("Lỗi nhập khóa.\n Nhập số nguyên không được vượt quá không gian Z(26)", "Error =.=!");
                     Hill_txtKhoaAbanro.Text = "";
                     Hill_txtKhoaBbanro.Text = "";
                     Hill_txtKhoaCbanro.Text = "";
                     Hill_txtKhoaDbanro.Text = "";
                 }
                 float detk = Hill.DetK(keya, keyb, keyc, keyd);
-                float Check = Hill.USCLN(detk, 214);
+                float Check = Hill.USCLN(detk, 26);
                 if (Check != 1)
                 {
-                    MessageBox.Show("Ma trận không hợp lệ, không tồn tại MT khả nghịch.\nNhập lại MT sao cho (|DetK|,214)=1 ", "Error =.=!");
+                    MessageBox.Show("Ma trận không hợp lệ, không tồn tại MT khả nghịch.\nNhập lại MT sao cho (|DetK|,26)=1 ", "Error =.=!");
                    
                     Hill_txtKhoaAbanro.Text = "";
                     Hill_txtKhoaBbanro.Text = "";
@@ -581,12 +589,19 @@ namespace ProjectX
                     return;
 
                 }
+                else if (Hill_txtBanma.Text.Contains(" "))
+                {
+                    MessageBox.Show("Bản mã không được chứa khoảng trắng!", "Error =.=!");
+                    Hill_txtBanma.Text = RemoveSpaces(Hill_txtBanma.Text);
+                    return;
+                }
                 else if (ContainsCharacters(Hill_txtBanma.Text))
                 {
                     MessageBox.Show("Bản mã bắt buộc là chữ HOA và không chứa kí tự kiểu khác!", "Error =.=!");
                     Hill_txtBanro.Text = "";
                     return;
                 }
+                
                 if (Hill_txtKhoaAbanma.Text == "" || Hill_txtKhoaBbanma.Text == "" || Hill_txtKhoaCbanma.Text == "" || Hill_txtKhoaDbanma.Text == "")
                 {
                     MessageBox.Show("Vui lòng nhập đầy đủ ma trận!", "Error =.=!");
@@ -596,9 +611,9 @@ namespace ProjectX
                 int keyb = Convert.ToInt32(Hill_txtKhoaBbanma.Text);
                 int keyc = Convert.ToInt32(Hill_txtKhoaCbanma.Text);
                 int keyd = Convert.ToInt32(Hill_txtKhoaDbanma.Text);
-                if (keya >= 214 || keya < 0 || keyb >= 214 || keyb < 0 || keyc >= 214 || keyc < 0 || keyd >= 214 || keyd < 0)
+                if (keya >= 26 || keya < 0 || keyb >= 26 || keyb < 0 || keyc >= 26 || keyc < 0 || keyd >= 26 || keyd < 0)
                 {
-                    MessageBox.Show("Lỗi nhập khóa.\n Nhập số nguyên không được vượt quá không gian Z(214)", "Error =.=!");
+                    MessageBox.Show("Lỗi nhập khóa.\n Nhập số nguyên không được vượt quá không gian Z(26)", "Error =.=!");
                     Hill_txtKhoaAbanma.Text = "";
                     Hill_txtKhoaBbanma.Text = "";
                     Hill_txtKhoaCbanma.Text = "";
@@ -606,16 +621,16 @@ namespace ProjectX
                 }
                 float detk = Hill.DetK(keya, keyb, keyc, keyd);
                 int detkToint = Convert.ToInt32(detk);
-                float Check = Hill.USCLN(detk, 214);
+                float Check = Hill.USCLN(detk, 26);
                 if (Check != 1)
                 {
-                    MessageBox.Show("Ma trận không hợp lệ, không tồn tại MT khả nghịch.\nNhập lại MT sao cho (|DetK|,214)=1 ", "Error =.=!");
+                    MessageBox.Show("Ma trận không hợp lệ, không tồn tại MT khả nghịch.\nNhập lại MT sao cho (|DetK|,26)=1 ", "Error =.=!");
                     Hill_txtKhoaAbanma.Text = "";
                     Hill_txtKhoaBbanma.Text = "";
                     Hill_txtKhoaCbanma.Text = "";
                     Hill_txtKhoaDbanma.Text = "";
                 }
-                float EclidDetK = Hill.Euclid_Extended(detkToint, 214);
+                float EclidDetK = Hill.Euclid_Extended(detkToint, 26);
                 float[,] MtBuDaiSo = Hill.MTbuDaiSo(keya, keyb, keyc, keyd);
                 float[,] MTkhaNghich = Hill.Kmutru1(EclidDetK, MtBuDaiSo);
                 int[] arc = Hill.NhanBietXau(Hill_txtBanma.Text);
@@ -730,9 +745,9 @@ namespace ProjectX
                 }
 
                 int key = Convert.ToInt32(AutoCode_txtKhoaBanro.Text);
-                if (key >= 214 || key < 0)
+                if (key >= 26 || key < 0)
                 {
-                    MessageBox.Show("Giá trị khóa không được vượt quá không gian Z(214)", "Error =.=!");
+                    MessageBox.Show("Giá trị khóa không được vượt quá không gian Z(26)", "Error =.=!");
                     AutoCode_txtKhoaBanro.Text = "";
                 }
                 int[] arr = autocode.taokhoa(AutoCode_txtBanro.Text, key);
